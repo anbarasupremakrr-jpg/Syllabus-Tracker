@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SyllabusTrack</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/script.js" defer></script>
+</head>
+<body>
+<div id="backdrop"></div>
+<aside id="sidebar">
+  <div class="brand">📚 SyllabusTrack</div>
+  <nav aria-label="Main navigation">
+    <button type="button" data-view="dashboard">🏠 Dashboard</button>
+    <button type="button" data-view="subjects">📖 My Subjects</button>
+    <button type="button" data-view="planner">🗓️ Exam Planner</button>
+    <button type="button" data-view="settings">⚙️ Settings</button>
+  </nav>
+</aside>
+<div class="main">
+  <header class="topbar">
+    <button type="button" id="menuBtn" class="btn" aria-label="Toggle navigation menu">☰</button>
+    <h1 id="title">Dashboard</h1>
+    <button type="button" id="themeBtn" class="btn" aria-label="Toggle light or dark theme"></button>
+  </header>
+  <main>
+    <section id="v-dashboard" class="view">
+      <div class="head"><h2>Overview</h2><button type="button" class="btn primary js-add">+ Add Subject</button></div>
+      <div id="stats" class="stats"></div>
+      <h2>Subject Progress</h2>
+      <div id="dashCards" class="grid"></div>
+      <div class="two">
+        <section class="card"><h2>Recently Updated Subjects</h2><div id="recent"></div></section>
+        <section class="card"><h2>Upcoming Examinations</h2><div id="upcoming"></div></section>
+      </div>
+    </section>
+
+    <section id="v-subjects" class="view">
+      <div class="toolbar">
+        <input id="fSearch" type="search" placeholder="Search name or code…" aria-label="Search subjects">
+        <select id="fSem" aria-label="Filter by semester"><option value="">All semesters</option></select>
+        <select id="fStatus" aria-label="Filter by status">
+          <option value="">All statuses</option><option>Not Started</option><option>In Progress</option><option>Completed</option>
+        </select>
+        <button type="button" id="fClear" class="btn">Clear Filters</button>
+        <button type="button" class="btn primary js-add">+ Add Subject</button>
+      </div>
+      <div id="subjectList" class="grid"></div>
+    </section>
+
+    <section id="v-detail" class="view"><div id="detail"></div></section>
+
+    <section id="v-planner" class="view">
+      <h2>Upcoming Examinations</h2><div id="plUp" class="card"></div>
+      <h2>Overdue Examinations</h2><div id="plOver" class="card"></div>
+    </section>
+
+    <section id="v-settings" class="view">
+      <div class="card setting"><h2>Theme</h2>
+        <label for="themeSel">Appearance</label>
+        <select id="themeSel"><option value="light">Light</option><option value="dark">Dark</option></select>
+      </div>
+      <div class="card setting"><h2>Backup</h2>
+        <p class="muted">Data is stored only in this browser on this device.</p>
+        <div class="actions">
+          <button type="button" id="exportBtn" class="btn primary">Export JSON</button>
+          <button type="button" id="importBtn" class="btn">Import JSON</button>
+          <input type="file" id="importFile" accept="application/json,.json" hidden>
+        </div>
+      </div>
+      <div class="card setting"><h2>Danger Zone</h2>
+        <p class="muted">Removes all subjects, units and topics. Your theme is kept.</p>
+        <button type="button" id="clearBtn" class="btn danger">Clear All Data</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<datalist id="depts"><option value="CSE"><option value="ECE"><option value="EEE"><option value="Mechanical"><option value="Civil"><option value="IT"></datalist>
+
+<dialog id="formDlg"><form id="form" novalidate>
+  <h2 id="fTitle"></h2><div id="fFields"></div>
+  <div class="actions end"><button type="button" id="fCancel" class="btn">Cancel</button><button type="submit" class="btn primary">Save</button></div>
+</form></dialog>
+
+<dialog id="confirmDlg"><form method="dialog">
+  <p id="cMsg"></p>
+  <div class="actions end"><button value="no" class="btn">Cancel</button><button value="yes" id="cOk" class="btn danger">Confirm</button></div>
+</form></dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
